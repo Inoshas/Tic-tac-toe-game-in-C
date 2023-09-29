@@ -111,7 +111,7 @@ void printwinner(){
         printf("***Player two WON *****\n  Good Job!");
     }
     else{
-        printf(" Better luck next time");
+        printf("Better luck next time");
   }
 
 }
