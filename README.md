@@ -11,8 +11,7 @@ This is a simple console-based Tic-Tac-Toe game implemented in the C programming
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [How to Play](#how-to-play)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
@@ -29,25 +28,32 @@ This is a simple console-based Tic-Tac-Toe game implemented in the C programming
 - You need a C compiler to build and run the game. If you don't have one installed, you can use [GCC](https://gcc.gnu.org/).
 
 ### Installation
-
 1. Clone the repository to your local machine:
 
-   git clone https://github.com/yourusername/tic-tac-toe-c.git
+   ```shell
+   git clone https://github.com/Inoshas/Tic-tac-toe-game-in-C
+
 
 2. Navigate to the project directory:
+ 
+   ```shell
+    cd tic-tac-toe-c
 
-  cd tic-tac-toe-c
 
 3. Build the game using your C compiler:
 
-  gcc tic_tac_toe.c -o tic_tac_toe
+   ```shell
+    gcc tic_tac_toe.c -o tic_tac_toe
 
-4. How to Play
-Run the game by executing the compiled executable:
+## How to Play
+-Run the game by executing the compiled executable:
 
-./tic_tac_toe
- - Follow the on-screen instructions to take turns, entering the row and column where you want to place your mark ('X' or 'O').
+    ```shell
+    ./tic_tac_toe          
 
- - The game will check for a win or a draw after each move and display the result.
 
- - Enjoy playing Tic-Tac-Toe!
+-Follow the on-screen instructions to take turns, entering the row and column where you want to place your mark ('X' or 'O').
+
+-The game will check for a win or a draw after each move and display the result.
+
+-Enjoy playing Tic-Tac-Toe!
