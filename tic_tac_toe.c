@@ -2,85 +2,55 @@
 
 // Declare all void functions::
 void getelements();
-void printarray();
-void check_diagonal();
-void check_horizontal();
-void check_vertical();
+void check_match();
+void printwinner();
 
 
 // Global variable:
-static int user[]={1,2};
+int user[]={1,2};
 char array[3][3] = {{'-',  '-', '-'}, {'-',  '-' , '-'}, {'-', '-' , '-'}};
-int col=0, row=0 , match_count=0;
+int col=0, row=0 , match_count=0, count=0;
 char winner;
 
 
-int count=1;
+// Main function goes here::
 int main(){
-    printf("Note that the first player marked with X and the second player marked with 0");
-    int i=0;
-
+    printf("\n\nNote that the first player marked with X and the second player marked with 0");
+    
    do{
-        printf("\nelement %d", count);
-
-        if (count%2!=0){
-            getelements(user[0]);
-        }   
-        else{
-            getelements(user[1]);
-        }
-        // This is to check diagonal, vertical and hhorizontal matches::: 
+    getelements();
+    // We need to check from 5th attemp onward, there is no matches before that::
+    // We can check diagonal, then vertical and horizontal
         if (count >4){
-            check_diagonal();
+            check_match();
             if (match_count==1){
                 break;
             }
-            else {
-                check_horizontal();
-                if (match_count==1){
-                break;}
-                else {
-                    check_vertical();
-                    if (match_count==1){
-                break;}
-                }
-            }
+            
             }     
-    }while(count<=9);
-  
-  if (winner=='x'){
-    printf("***Player One WON *****\n  Good Job!");
-  }
-  else if(winner=='0'){
-    printf("***Player two WON *****\n  Good Job!");
-  }
-  else{
-    printf(" Better luck next time");
-  }
+    }while(count<9);
+
+    printwinner();
     return 0;
 }
 
-// This function mainly enter valid values to array:
-void getelements(int user_val){
-    printf(" \n Enter  player %d position:", user_val);
-    scanf("%d %d" , &col, &row);
-    // check entry validity:
-    if  (array[col][row]=='-' && (col>=0 && col <=2) && (row >= 0 &&row <=2)){
- // 'x' for user 1 and '0' for user 2:
-         if (user_val==1 ){
-        array[col][row]= 'x';}
-        else{ 
-        array[col][row]= '0'; } 
-        count ++;
-    } 
-    else {
-        printf("Not a valid entry: enter again");
+// This function mainly Used to fill the array and check the validily of the elements:
+void getelements() {
+    printf("\n Enter player %d position:", (count % 2) + 1); // Determine the current player based on count
+    scanf("%d %d", &col, &row);
+
+    // Check entry validity
+    if (array[col][row] == '-' && col >= 0 && col <= 2 && row >= 0 && row <= 2) {
+        // 'x' for Player 1 and '0' for Player 2
+        array[col][row] = (count % 2 == 0) ? 'x' : '0'; // Use count to determine the player
+        count++;
+    } else {
+        printf("Not a valid entry. Please enter again.\n");
     }
 
-    //----------------------------------------------------------------
+
     // This print the array nicely and we need it every iteration:
     printf("\n \n");
-    //printarray(array);
     for (int i = 0 ; i<3; i++){
         for (int j=0; j<3; j++){
             printf("%c ", array[i][j]);
@@ -92,28 +62,32 @@ void getelements(int user_val){
 }
 
 
-void check_vertical(){  
-   for (int i= 0; i<3; i++){
+
+void check_match(){
+    // Vertical::
+    for (int i= 0; i<3; i++){
         if ((array[i][0]==array[i][1]) && (array[i][1]==array[i][2]) && array[i][0]!='-')
         {
             match_count=1;
-            winner=array[i][0];}
-     }
-   
-}
+            winner=array[i][0];
+            }
+     } 
 
-void check_horizontal(){
-   for (int i= 0; i<3; i++){
-        if ((array[0][i]==array[1][i]) && (array[1][i]==array[2][i]) && array[1][i]!='-')
+     // Horizontal:: 
+
+    if  (match_count !=1){ 
+          for (int i= 0; i<3; i++){
+        if ((array[0][i]==array[1][i]) && (array[1][i]==array[2][i]) && (array[1][i]!='-' ) )
         {
         match_count=1;
-        winner=array[0][i];}
-     } 
-}
+        winner=array[0][i];
+        }
+     }
+    } 
 
-void check_diagonal(){
-
-    if ((array[0][0]== array[1][1]) && (array[1][1]==array[2][2] )  && (array[0][0] != '-'))
+     // Diagonal:: 
+   if  (match_count !=1){ 
+      if ((array[0][0]== array[1][1]) && (array[1][1]==array[2][2] )  && (array[0][0] != '-'))
             {
             match_count=1;
             winner=array[0][0];
@@ -123,6 +97,23 @@ void check_diagonal(){
                 match_count=1;
                 winner=array[0][2];
             } 
+    }
+}
+
+
+    // This is to print the winner :::
+void printwinner(){
+   
+    if (winner=='x'){
+        printf("***Player One WON *****\n  Good Job!");
+    }
+    else if(winner=='0'){
+        printf("***Player two WON *****\n  Good Job!");
+    }
+    else{
+        printf(" Better luck next time");
+  }
+
 }
 
    
