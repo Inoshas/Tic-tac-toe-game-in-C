@@ -49,7 +49,7 @@ This is a simple console-based Tic-Tac-Toe game implemented in the C programming
 -Run the game by executing the compiled executable:
 
    ```shell
-    ./tic_tac_toe          
+    ./tic_tac_toe
 
 
 -Follow the on-screen instructions to take turns, entering the row and column where you want to place your mark ('X' or 'O').
